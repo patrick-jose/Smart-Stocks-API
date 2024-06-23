@@ -1,7 +1,7 @@
 package com.smartstocks.smartstockscoreapi.services;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.smartstocks.smartstockscoreapi.domains.benchmark.Benchmark;
@@ -15,7 +15,7 @@ public class BenchmarkService {
 
     private final BenchmarkRepository benchmarkRepository;
 
-    public Page<Benchmark> findAll(Pageable pageable) {
-        return this.benchmarkRepository.findAll(pageable);
+    public List<Benchmark> findAll() {
+        return this.benchmarkRepository.findAll();
     }
 }

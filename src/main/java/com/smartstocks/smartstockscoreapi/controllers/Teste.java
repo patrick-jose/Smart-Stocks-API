@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smartstocks.smartstockscoreapi.services.InvestmentTypeService;
+import com.smartstocks.smartstockscoreapi.services.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,10 +17,13 @@ public class Teste {
     // private final BenchmarkService benchmarkService;
     // private final InvestmentService investmentService;
     // private final InvestmentHistoryService investmentHistoryService;
-    private final InvestmentTypeService investmentTypeService;
+    // private final InvestmentTypeService investmentTypeService;
+    // private final PortfolioService portfolioService;
+    // private final PortfolioCompositionService portfolioCompositionService;
+    private final UserService userService;
 
     @GetMapping
     public ResponseEntity<?> findAll() {
-        return ResponseEntity.ok(investmentTypeService.findAll());
+        return ResponseEntity.ok(userService.findAll());
     }
 }

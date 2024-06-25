@@ -1,8 +1,12 @@
 package com.smartstocks.smartstockscoreapi.domains.user;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.smartstocks.smartstockscoreapi.domains.riskprofile.RiskProfile;
 import com.smartstocks.smartstockscoreapi.domains.role.Role;
@@ -24,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "\"User\"", schema = "\"SmartStocksDB\"")
-public class User {
+public class User implements UserDetails {
     @Id
     private Long id;
 
@@ -38,7 +42,7 @@ public class User {
     private Boolean isEnabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "UserRole", joinColumns = @JoinColumn(name = "\"userId\""), inverseJoinColumns = @JoinColumn(name = "\"roleId\""))
+    @JoinTable(schema = "\"SmartStocksDB\"", name = "\"UserRole\"", joinColumns = @JoinColumn(name = "\"userId\""), inverseJoinColumns = @JoinColumn(name = "\"roleId\""))
     private Set<Role> roles = new HashSet<>();
 
     @ManyToOne
@@ -51,4 +55,39 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "\"termId\"")
     private UserTerm userTerm;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

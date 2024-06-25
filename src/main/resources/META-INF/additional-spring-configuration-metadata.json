@@ -1,9 +1,17 @@
-{
-    "properties": [
-        {
-            "name": "api.front-end.address",
-            "type": "java.lang.String",
-            "description": "A description for 'api.front-end.address'"
-        }
-    ]
-}
+{"properties": [
+  {
+    "name": "api.front-end.address",
+    "type": "java.lang.String",
+    "description": "A description for 'api.front-end.address'"
+  },
+  {
+    "name": "api.security.token.issuer",
+    "type": "java.lang.String",
+    "description": "A description for 'api.security.token.issuer'"
+  },
+  {
+    "name": "api.security.token.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'api.security.token.secret'"
+  }
+]}

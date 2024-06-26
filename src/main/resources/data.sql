@@ -13,13 +13,13 @@ DELETE FROM "SmartStocksDB"."InvestmentType";
 DELETE FROM "SmartStocksDB"."UserTerm";
 
 -- Benchmark
-INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (1, 'Benchmark 1');
-INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (2, 'Benchmark 2');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (1, 'CDI');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (2, 'SELIC');
 ALTER SEQUENCE "SmartStocksDB".benchmark_id_seq RESTART WITH 3;
 
 -- RiskProfile
-INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (1, 'RiskProfile 1');
-INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (2, 'RiskProfile 2');
+INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (1, 'CONSERVADOR');
+INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (2, 'AGRESSIVO');
 ALTER SEQUENCE "SmartStocksDB".riskprofile_id_seq RESTART WITH 3;
 
 -- InvestmentType
@@ -28,8 +28,8 @@ INSERT INTO "SmartStocksDB"."InvestmentType" (id, name) VALUES (2, 'InvestmentTy
 ALTER SEQUENCE "SmartStocksDB".investmenttype_id_seq RESTART WITH 3;
 
 -- UserTerm
-INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (1, 'UserTerm 1');
-INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (2, 'UserTerm 2');
+INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (1, 'CURTO');
+INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (2, 'CURTO_MEDIO');
 ALTER SEQUENCE "SmartStocksDB".userterm_id_seq RESTART WITH 3;
 
 -- Investment

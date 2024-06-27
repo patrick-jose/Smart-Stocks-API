@@ -15,12 +15,22 @@ DELETE FROM "SmartStocksDB"."UserTerm";
 -- Benchmark
 INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (1, 'CDI');
 INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (2, 'SELIC');
-ALTER SEQUENCE "SmartStocksDB".benchmark_id_seq RESTART WITH 3;
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (3, 'IPCA');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (4, 'IBOVESPA');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (5, 'IFIX');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (6, 'SUNO30');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (7, 'IPAX');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (8, 'SP500');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (9, 'NASDAQ');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (10, 'DOWJONES');
+INSERT INTO "SmartStocksDB"."Benchmark" (id, name) VALUES (11, 'FTSE_NAREIT');
+ALTER SEQUENCE "SmartStocksDB".benchmark_id_seq RESTART WITH 12;
 
 -- RiskProfile
 INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (1, 'CONSERVADOR');
 INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (2, 'AGRESSIVO');
-ALTER SEQUENCE "SmartStocksDB".riskprofile_id_seq RESTART WITH 3;
+INSERT INTO "SmartStocksDB"."RiskProfile" (id, name) VALUES (3, 'MODERADO');
+ALTER SEQUENCE "SmartStocksDB".riskprofile_id_seq RESTART WITH 4;
 
 -- InvestmentType
 INSERT INTO "SmartStocksDB"."InvestmentType" (id, name) VALUES (1, 'InvestmentType 1');
@@ -30,7 +40,10 @@ ALTER SEQUENCE "SmartStocksDB".investmenttype_id_seq RESTART WITH 3;
 -- UserTerm
 INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (1, 'CURTO');
 INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (2, 'CURTO_MEDIO');
-ALTER SEQUENCE "SmartStocksDB".userterm_id_seq RESTART WITH 3;
+INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (3, 'MEDIO');
+INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (4, 'MEDIO_LONGO');
+INSERT INTO "SmartStocksDB"."UserTerm" (id, name) VALUES (5, 'LONGO');
+ALTER SEQUENCE "SmartStocksDB".userterm_id_seq RESTART WITH 6;
 
 -- Investment
 INSERT INTO "SmartStocksDB"."Investment" (id, name, "typeId", "riskProfileId", "minimumInvestment") VALUES (1, 'Investment 1', 1, 1, 1987344);

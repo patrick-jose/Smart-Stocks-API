@@ -12,7 +12,6 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.smartstocks.smartstockscoreapi.domains.user.User;
 
-
 @Service
 public class TokenService {
 
@@ -45,6 +44,22 @@ public class TokenService {
                     .build()
                     .verify(token)
                     .getSubject();
+        } catch (JWTVerificationException exception) {
+            throw new RuntimeException("Token invalid or expired");
+        }
+    }
+
+    public Long getLoggedUserId(String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return Long.valueOf(JWT.require(algorithm)
+                    .withIssuer(issuer)
+                    .build()
+                    .verify(token)
+                    .getClaim("id").toString().replace("\"", ""));
         } catch (JWTVerificationException exception) {
             throw new RuntimeException("Token invalid or expired");
         }

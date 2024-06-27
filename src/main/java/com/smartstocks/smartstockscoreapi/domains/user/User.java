@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.smartstocks.smartstockscoreapi.domains.portfolio.CreatePortfolioDTO;
 import com.smartstocks.smartstockscoreapi.domains.riskprofile.RiskProfile;
 import com.smartstocks.smartstockscoreapi.domains.role.Role;
 import com.smartstocks.smartstockscoreapi.domains.userterm.UserTerm;
@@ -56,6 +57,11 @@ public class User implements UserDetails {
     @JoinColumn(name = "\"termId\"")
     private UserTerm userTerm;
 
+    public User(CreatePortfolioDTO dto) {
+        this.riskProfile.setId(Long.valueOf(dto.riskProfile().getId()));
+        this.capitalAmount = dto.initialCapital();
+        this.userTerm.setId(Long.valueOf(dto.userTerm().getId()));
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;

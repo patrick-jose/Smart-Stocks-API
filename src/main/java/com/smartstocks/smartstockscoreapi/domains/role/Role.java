@@ -14,8 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "\"Role\"", schema = "\"SmartStocksDB\"")
 public class Role implements GrantedAuthority {

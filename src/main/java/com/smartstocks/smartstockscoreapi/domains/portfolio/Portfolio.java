@@ -30,8 +30,14 @@ public class Portfolio {
 
     @ManyToOne
     @JoinColumn(name = "\"userId\"")
-    private User user;
+    private User user = new User();
 
     @OneToMany(mappedBy = "portfolio")
     private Set<PortfolioComposition> compositions = new HashSet<PortfolioComposition>();
+
+    public Portfolio (CreatePortfolioDTO dto) {
+        this.user.getRiskProfile().setId(Long.valueOf(dto.riskProfile().getId()));
+        dateCreated = LocalDate.now();
+        this.user.getUserTerm().setId(Long.valueOf(dto.userTerm().getId()));
+    }
 }

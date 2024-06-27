@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.smartstocks.smartstockscoreapi.domains.portfolio.CreatePortfolioDTO;
 import com.smartstocks.smartstockscoreapi.domains.riskprofile.RiskProfile;
 import com.smartstocks.smartstockscoreapi.domains.role.Role;
 import com.smartstocks.smartstockscoreapi.domains.userterm.UserTerm;
@@ -16,6 +16,8 @@ import com.smartstocks.smartstockscoreapi.domains.userterm.UserTerm;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -24,13 +26,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "\"User\"", schema = "\"SmartStocksDB\"")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -57,11 +62,12 @@ public class User implements UserDetails {
     @JoinColumn(name = "\"termId\"")
     private UserTerm userTerm;
 
-    public User(CreatePortfolioDTO dto) {
-        this.riskProfile.setId(Long.valueOf(dto.riskProfile().getId()));
-        this.capitalAmount = dto.initialCapital();
-        this.userTerm.setId(Long.valueOf(dto.userTerm().getId()));
+    public User(CreateUserDTO dto) {
+        this.name = dto.name();
+        this.email = dto.email();
+        this.password = new BCryptPasswordEncoder().encode(dto.password());
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;

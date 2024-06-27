@@ -12,6 +12,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.smartstocks.smartstockscoreapi.configurations.security.TokenService;
 import com.smartstocks.smartstockscoreapi.domains.portfolio.CreatePortfolioDTO;
 import com.smartstocks.smartstockscoreapi.domains.portfolio.DetailsPortfolioDTO;
+import com.smartstocks.smartstockscoreapi.domains.portfolio.Portfolio;
+import com.smartstocks.smartstockscoreapi.domains.user.User;
+import com.smartstocks.smartstockscoreapi.services.PortfolioService;
 import com.smartstocks.smartstockscoreapi.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +31,7 @@ public class PortfolioController {
 
     private final TokenService tokenService;
     private final UserService userService;
+    private final PortfolioService portfolioService;
 
     // @GetMapping
     // public ResponseEntity<DetailsPortfolioDTO> getPortfolio(@RequestHeader("Authorization") String token) {
@@ -35,11 +39,10 @@ public class PortfolioController {
     //     return ResponseEntity.ok(new CreatePortfolioDTO(userService.getUserPortfolio(id)));
     // }
 
-    // @PostMapping
-    // public ResponseEntity<CreatePortfolioDTO> createPortfolio(@RequestHeader("Authorization") String token) {
-    //     User user = this.userService.save(new User(registerUserDTO));
-    //     URI uri = UriComponentsBuilder.fromPath("/v1/users/{id}").buildAndExpand(user.getId()).toUri();
-    //     return ResponseEntity.created(uri).body(new DetailsUserDTO(user));
-    //     return entity;
-    // }
+    @PostMapping
+    public ResponseEntity<?> createPortfolio(@RequestHeader("Authorization") String token, @RequestBody CreatePortfolioDTO dto) {
+        Portfolio portfolio = this.portfolioService.createPortfolio(new Portfolio(dto));
+        URI uri = UriComponentsBuilder.fromPath("/v1/portfolios/{id}").buildAndExpand(portfolio.getId()).toUri();
+        return ResponseEntity.created(uri).body(portfolio);
+    }
 }
